@@ -13,7 +13,7 @@ type options struct {
 	path string
 }
 
-func Init(e *echo.Echo, opts ...InitOption) {
+func Init(e *echo.Echo, opts ...InitOption) *standard.Server {
 	op := &options{
 		path: "/",
 	}
@@ -25,4 +25,6 @@ func Init(e *echo.Echo, opts ...InitOption) {
 	s := standard.New("")
 	s.SetHandler(e)
 	http.Handle(op.path, s)
+
+	return s
 }
