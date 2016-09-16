@@ -10,7 +10,7 @@ func AppContext() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			if r, ok := c.Request().(*standard.Request); ok {
-				c.SetContext(appengine.WithContext(c.Context(), r.Request))
+				c.SetStdContext(appengine.WithContext(c.StdContext(), r.Request))
 			}
 			return next(c)
 		}
